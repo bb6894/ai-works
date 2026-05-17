@@ -11,6 +11,10 @@ import sys
 import argparse
 from pathlib import Path
 
+# Windows GBK 终端兼容：stdout 强制用 UTF-8
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8")
+
 
 # ---------- 中文停用词 ----------
 _STOP_WORDS_CN = {
