@@ -101,7 +101,8 @@ def tokenize(text: str) -> set:
     # 英文单词
     en_words = re.findall(r"[a-z][a-z0-9+#/.-]+", text)
     for w in en_words:
-        w = w.strip(".-/+")
+        # 保留 c++/c# 等特殊写法，只清除尾部标点
+        w = w.rstrip(".-/")
         if w and w not in _STOP_WORDS_EN and len(w) > 1:
             tokens.add(w)
 
