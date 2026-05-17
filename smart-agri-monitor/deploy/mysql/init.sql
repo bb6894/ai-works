@@ -1,5 +1,7 @@
+SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE DATABASE IF NOT EXISTS smart_agri DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE smart_agri;
+SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 DROP TABLE IF EXISTS operation_log;
 DROP TABLE IF EXISTS alarm_record;
@@ -15,7 +17,7 @@ CREATE TABLE role (
   role_code VARCHAR(64) NOT NULL UNIQUE,
   role_name VARCHAR(64) NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE user (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -27,7 +29,7 @@ CREATE TABLE user (
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   INDEX idx_user_role (role_id)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE farm_plot (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -39,7 +41,7 @@ CREATE TABLE farm_plot (
   status TINYINT NOT NULL DEFAULT 1,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE device (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -53,7 +55,7 @@ CREATE TABLE device (
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   INDEX idx_device_plot (plot_id)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE sensor_data (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -66,7 +68,7 @@ CREATE TABLE sensor_data (
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   INDEX idx_sensor_device_metric_time (device_id, metric_type, collected_at),
   INDEX idx_sensor_plot_time (plot_id, collected_at)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE alarm_rule (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -82,7 +84,7 @@ CREATE TABLE alarm_rule (
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   INDEX idx_rule_enabled_metric (enabled, metric_type)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE alarm_record (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -102,7 +104,7 @@ CREATE TABLE alarm_record (
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   INDEX idx_alarm_status (status),
   INDEX idx_alarm_rule_device_status (rule_id, device_id, status)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE operation_log (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -117,7 +119,7 @@ CREATE TABLE operation_log (
   error_message VARCHAR(512) NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   INDEX idx_operation_user_time (user_id, created_at)
-);
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO role (id, role_code, role_name) VALUES
 (1, 'ADMIN', '系统管理员');
