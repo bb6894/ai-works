@@ -26,6 +26,12 @@ docker compose up --build
 - 用户名：`admin`
 - 密码：`admin123`
 
+## 一分钟项目亮点
+
+- 后端链路完整：登录鉴权、主数据 CRUD、模拟采集、规则预警、告警处理、历史查询、报表导出。
+- 工程能力明确：MyBatis-Plus 数据访问、Redis 缓存、JWT 鉴权、定时任务、统一响应、Docker Compose 部署。
+- 面试可讲性强：能围绕表设计、告警去重、缓存策略、中文乱码排查、容器化部署展开。
+
 ## 演示流程
 
 1. 登录后台，进入首页看板，展示设备数量、今日数据量、未处理告警和图表。
@@ -38,15 +44,27 @@ docker compose up --build
 8. 打开报表导出，下载传感器数据或告警记录 Excel。
 9. 打开 Swagger，展示后端接口文档和 REST API 设计。
 
-## 截图建议
+## 运行截图
 
-运行后建议补充以下截图到 `docs/screenshots/`：
+### 首页看板
 
-- `dashboard.png`：首页看板
-- `devices.png`：设备管理
-- `rules.png`：预警规则
-- `alarms.png`：告警处理
-- `swagger.png`：Swagger 接口文档
+![首页看板](docs/screenshots/dashboard.png)
+
+### 设备管理
+
+![设备管理](docs/screenshots/devices.png)
+
+### 预警规则
+
+![预警规则](docs/screenshots/rules.png)
+
+### 告警处理
+
+![告警处理](docs/screenshots/alarms.png)
+
+### Swagger 接口文档
+
+![Swagger 接口文档](docs/screenshots/swagger.png)
 
 ## 项目结构
 
