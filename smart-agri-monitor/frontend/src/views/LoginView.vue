@@ -9,7 +9,9 @@
         <el-form-item label="密码">
           <el-input v-model="form.password" type="password" show-password />
         </el-form-item>
-        <el-button type="primary" size="large" style="width: 100%" :loading="loading" @click="login">登录</el-button>
+        <el-button type="primary" size="large" style="width: 100%" :loading="loading" @click="login"
+          >登录</el-button
+        >
       </el-form>
     </div>
   </div>

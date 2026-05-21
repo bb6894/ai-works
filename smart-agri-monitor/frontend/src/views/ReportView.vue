@@ -2,8 +2,12 @@
   <div class="page">
     <div class="panel">
       <el-space>
-        <el-button type="primary" @click="download('/reports/sensor-data', 'sensor-data.xlsx')">导出传感器数据</el-button>
-        <el-button type="warning" @click="download('/reports/alarms', 'alarm-records.xlsx')">导出告警记录</el-button>
+        <el-button type="primary" @click="download('/reports/sensor-data', 'sensor-data.xlsx')"
+          >导出传感器数据</el-button
+        >
+        <el-button type="warning" @click="download('/reports/alarms', 'alarm-records.xlsx')"
+          >导出告警记录</el-button
+        >
       </el-space>
     </div>
   </div>

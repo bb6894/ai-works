@@ -8,7 +8,12 @@
 import CrudTable from '../components/CrudTable.vue'
 import { ruleApi } from '../api/modules'
 
-const defaults = { enabled: 1, alarmLevel: 'warning', compareOperator: 'GT', metricType: 'temperature' }
+const defaults = {
+  enabled: 1,
+  alarmLevel: 'warning',
+  compareOperator: 'GT',
+  metricType: 'temperature'
+}
 const metricOptions = [
   { label: '温度', value: 'temperature' },
   { label: '空气湿度', value: 'air_humidity' },
@@ -39,7 +44,15 @@ const fields = [
   { prop: 'compareOperator', label: '比较符', type: 'select', options: operatorOptions },
   { prop: 'thresholdValue', label: '阈值1', type: 'number' },
   { prop: 'thresholdValue2', label: '阈值2', type: 'number' },
-  { prop: 'alarmLevel', label: '等级', type: 'select', options: [{ label: '一般', value: 'warning' }, { label: '严重', value: 'critical' }] },
+  {
+    prop: 'alarmLevel',
+    label: '等级',
+    type: 'select',
+    options: [
+      { label: '一般', value: 'warning' },
+      { label: '严重', value: 'critical' }
+    ]
+  },
   { prop: 'enabled', label: '启用', type: 'switch' }
 ]
 </script>

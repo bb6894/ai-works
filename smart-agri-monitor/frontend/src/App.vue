@@ -55,7 +55,7 @@ async function logout() {
   try {
     await api.post('/auth/logout')
   } catch (error) {
-    console.debug('logout ignored', error)
+    console.warn('logout ignored', error)
   }
   localStorage.removeItem('smart_agri_token')
   router.push('/login')

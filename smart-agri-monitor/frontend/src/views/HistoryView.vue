@@ -3,7 +3,12 @@
     <div class="toolbar">
       <div style="display: flex; gap: 12px">
         <el-select v-model="query.deviceId" clearable placeholder="设备" style="width: 220px">
-          <el-option v-for="device in devices" :key="device.id" :label="device.deviceName" :value="device.id" />
+          <el-option
+            v-for="device in devices"
+            :key="device.id"
+            :label="device.deviceName"
+            :value="device.id"
+          />
         </el-select>
         <el-select v-model="query.metricType" clearable placeholder="指标" style="width: 180px">
           <el-option label="温度" value="temperature" />
@@ -47,7 +52,14 @@ async function load() {
     tooltip: { trigger: 'axis' },
     xAxis: { type: 'category', data: rows.value.map((item) => item.collectedAt) },
     yAxis: { type: 'value' },
-    series: [{ type: 'line', smooth: true, data: rows.value.map((item) => item.metricValue), color: '#2f80ed' }]
+    series: [
+      {
+        type: 'line',
+        smooth: true,
+        data: rows.value.map((item) => item.metricValue),
+        color: '#2f80ed'
+      }
+    ]
   })
 }
 

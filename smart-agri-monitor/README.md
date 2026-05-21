@@ -1,12 +1,15 @@
 # 智慧农业设备监测与预警平台
 
+[![Smart Agri CI](https://github.com/bb6894/ai-works/actions/workflows/ci.yml/badge.svg)](https://github.com/bb6894/ai-works/actions/workflows/ci.yml)
+
 面向 Java 后端岗面试的中等 MVP：农田地块接入模拟传感器，系统展示实时环境数据，按规则触发告警，并支持告警处理、历史查询、统计看板和 Excel 导出。
 
 ## 技术栈
 
 - 后端：Spring Boot 3、MyBatis-Plus、MySQL 8、Redis、JWT、EasyExcel、Springdoc OpenAPI
 - 前端：Vue 3、Vite、Element Plus、ECharts
-- 部署：Docker Compose
+- 工程化：GitHub Actions、JUnit 5、Mockito、JaCoCo、ESLint、Prettier
+- 部署：Docker Compose、MySQL/Redis healthcheck、环境变量配置
 
 ## 5 分钟启动
 
@@ -29,8 +32,28 @@ docker compose up --build
 ## 一分钟项目亮点
 
 - 后端链路完整：登录鉴权、主数据 CRUD、模拟采集、规则预警、告警处理、历史查询、报表导出。
-- 工程能力明确：MyBatis-Plus 数据访问、Redis 缓存、JWT 鉴权、定时任务、统一响应、Docker Compose 部署。
+- 工程能力明确：MyBatis-Plus 数据访问、Redis 缓存、JWT 鉴权、定时任务、统一响应、Docker Compose 部署、CI 质量门禁。
+- 质量保障可展示：核心 service 单元测试覆盖认证、设备、数据上报、告警规则与看板统计，JaCoCo 输出覆盖率报告。
 - 面试可讲性强：能围绕表设计、告警去重、缓存策略、中文乱码排查、容器化部署展开。
+
+## 工程质量命令
+
+```powershell
+# 后端测试 + JaCoCo 覆盖率报告
+cd C:\Users\yyds\GitHub\ai-works\smart-agri-monitor\backend
+mvn test
+
+# 前端构建、Lint、格式检查
+cd C:\Users\yyds\GitHub\ai-works\smart-agri-monitor\frontend
+npm install
+npm run lint
+npm run format:check
+npm run build
+```
+
+- 后端覆盖率报告：`backend/target/site/jacoco/index.html`
+- CI 工作流：`.github/workflows/ci.yml`
+- 前端规范：`frontend/eslint.config.js`、`frontend/.prettierrc`
 
 ## 演示流程
 
@@ -93,6 +116,21 @@ smart-agri-monitor
 
 ## 常见问题
 
+### 生产环境配置
+
+`docker-compose.yml` 支持通过 `.env` 覆盖敏感配置。可复制 `.env.example` 后按环境修改：
+
+```powershell
+copy .env.example .env
+```
+
+重点配置项：
+
+- `MYSQL_ROOT_PASSWORD`：MySQL root 密码
+- `JWT_SECRET`：JWT 签名密钥，生产环境必须替换为高强度随机字符串
+- `ADMIN_DEFAULT_PASSWORD`：初始化管理员密码
+- `CORS_ALLOWED_ORIGINS`：允许访问后端的前端域名列表
+
 ### Docker 后端构建慢
 
 后端 Dockerfile 已使用 Maven 批处理构建，并通过 `backend/settings.xml` 配置 Maven Central 镜像。首次构建需要下载依赖，后续会复用 Docker 缓存。
@@ -116,6 +154,8 @@ docker exec -i smart-agri-mysql mysql -uroot -proot123456 --default-character-se
 
 ## 最小验收清单
 
+- `mvn test` 通过，并生成 JaCoCo 报告
+- `npm run lint`、`npm run format:check`、`npm run build` 通过
 - `http://localhost:8080/api/health` 返回 `UP`
 - `http://localhost:8080/swagger-ui.html` 能打开
 - `http://localhost:8088` 能登录

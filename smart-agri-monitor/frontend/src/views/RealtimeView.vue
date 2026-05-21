@@ -1,8 +1,19 @@
 <template>
   <div class="page">
     <div class="toolbar">
-      <el-select v-model="deviceId" clearable placeholder="选择设备" style="width: 260px" @change="load">
-        <el-option v-for="device in devices" :key="device.id" :label="device.deviceName" :value="device.id" />
+      <el-select
+        v-model="deviceId"
+        clearable
+        placeholder="选择设备"
+        style="width: 260px"
+        @change="load"
+      >
+        <el-option
+          v-for="device in devices"
+          :key="device.id"
+          :label="device.deviceName"
+          :value="device.id"
+        />
       </el-select>
       <el-button @click="load">刷新</el-button>
     </div>

@@ -1,7 +1,13 @@
 <template>
   <div class="page">
     <div class="toolbar">
-      <el-input v-model="keyword" clearable placeholder="搜索日志" style="max-width: 320px" @keyup.enter="load" />
+      <el-input
+        v-model="keyword"
+        clearable
+        placeholder="搜索日志"
+        style="max-width: 320px"
+        @keyup.enter="load"
+      />
       <el-button @click="load">刷新</el-button>
     </div>
     <div class="panel">
@@ -14,7 +20,14 @@
         <el-table-column prop="success" label="成功" />
         <el-table-column prop="createdAt" label="时间" width="180" />
       </el-table>
-      <el-pagination v-model:current-page="page" style="margin-top: 16px" background layout="prev, pager, next, total" :total="total" @current-change="load" />
+      <el-pagination
+        v-model:current-page="page"
+        style="margin-top: 16px"
+        background
+        layout="prev, pager, next, total"
+        :total="total"
+        @current-change="load"
+      />
     </div>
   </div>
 </template>

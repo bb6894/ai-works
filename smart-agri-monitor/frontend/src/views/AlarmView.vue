@@ -1,7 +1,13 @@
 <template>
   <div class="page">
     <div class="toolbar">
-      <el-input v-model="keyword" clearable placeholder="搜索告警" style="max-width: 320px" @keyup.enter="load" />
+      <el-input
+        v-model="keyword"
+        clearable
+        placeholder="搜索告警"
+        style="max-width: 320px"
+        @keyup.enter="load"
+      />
       <el-button @click="load">刷新</el-button>
     </div>
     <div class="panel">
@@ -15,11 +21,20 @@
         <el-table-column label="操作" width="220">
           <template #default="{ row }">
             <el-button size="small" @click="handle(row, 'processing')">处理中</el-button>
-            <el-button size="small" type="success" @click="handle(row, 'resolved')">已处理</el-button>
+            <el-button size="small" type="success" @click="handle(row, 'resolved')"
+              >已处理</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination v-model:current-page="page" style="margin-top: 16px" background layout="prev, pager, next, total" :total="total" @current-change="load" />
+      <el-pagination
+        v-model:current-page="page"
+        style="margin-top: 16px"
+        background
+        layout="prev, pager, next, total"
+        :total="total"
+        @current-change="load"
+      />
     </div>
   </div>
 </template>
@@ -41,7 +56,9 @@ async function load() {
 }
 
 async function handle(row, status) {
-  const { value } = await ElMessageBox.prompt('处理说明', '告警处理', { inputValue: status === 'resolved' ? '现场已确认并恢复正常' : '已派单处理' })
+  const { value } = await ElMessageBox.prompt('处理说明', '告警处理', {
+    inputValue: status === 'resolved' ? '现场已确认并恢复正常' : '已派单处理'
+  })
   await alarmApi.handle(row.id, { status, remark: value })
   ElMessage.success('处理成功')
   load()

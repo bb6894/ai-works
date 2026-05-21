@@ -55,14 +55,30 @@ function renderCharts() {
     tooltip: {},
     xAxis: { type: 'category', data: (stats.value.alarmTrend || []).map((i) => i.date) },
     yAxis: { type: 'value' },
-    series: [{ type: 'bar', data: (stats.value.alarmTrend || []).map((i) => i.count), itemStyle: { color: '#e85d4f' } }]
+    series: [
+      {
+        type: 'bar',
+        data: (stats.value.alarmTrend || []).map((i) => i.count),
+        itemStyle: { color: '#e85d4f' }
+      }
+    ]
   })
   echarts.init(metricChart.value).setOption({
     title: { text: '近期环境指标', left: 8, top: 8, textStyle: { fontSize: 14 } },
     tooltip: { trigger: 'axis' },
-    xAxis: { type: 'category', data: (stats.value.metricTrend || []).map((i) => i.time.slice(11, 19)) },
+    xAxis: {
+      type: 'category',
+      data: (stats.value.metricTrend || []).map((i) => i.time.slice(11, 19))
+    },
     yAxis: { type: 'value' },
-    series: [{ type: 'line', smooth: true, data: (stats.value.metricTrend || []).map((i) => i.value), color: '#2ba471' }]
+    series: [
+      {
+        type: 'line',
+        smooth: true,
+        data: (stats.value.metricTrend || []).map((i) => i.value),
+        color: '#2ba471'
+      }
+    ]
   })
 }
 

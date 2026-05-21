@@ -1,5 +1,10 @@
 <template>
-  <CrudTable :api="deviceApi" :columns="columns" :fields="fields" :defaults="{ onlineStatus: 1, deviceType: 'multi_sensor' }" />
+  <CrudTable
+    :api="deviceApi"
+    :columns="columns"
+    :fields="fields"
+    :defaults="{ onlineStatus: 1, deviceType: 'multi_sensor' }"
+  />
 </template>
 
 <script setup>
